@@ -1,8 +1,8 @@
-public class CurrentConditionsDisplay implements Observer, DisplayElement {
+public class CurrentConditionsDisplay implements IObserver, IDisplayElement {
     private float temperature;
     private float humidity;
 
-    public CurrentConditionsDisplay(Subject weatherData) {
+    public CurrentConditionsDisplay(ISubject weatherData) {
         weatherData.registerObserver(this);
     }
 

@@ -1,7 +1,7 @@
-public class StatisticsDisplay implements Observer, DisplayElement {
+public class StatisticsDisplay implements IObserver, IDisplayElement {
     private float temperature;
 
-    public StatisticsDisplay(Subject weatherData) {
+    public StatisticsDisplay(ISubject weatherData) {
         weatherData.registerObserver(this);
     }
 

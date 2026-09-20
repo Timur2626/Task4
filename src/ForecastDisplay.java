@@ -1,7 +1,7 @@
-public class ForecastDisplay implements Observer, DisplayElement {
+public class ForecastDisplay implements IObserver, IDisplayElement {
     private float pressure;
 
-    public ForecastDisplay(Subject weatherData) {
+    public ForecastDisplay(ISubject weatherData) {
         weatherData.registerObserver(this);
     }
 

@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class WeatherData implements Subject {
-    private List<Observer> observers;
+public class WeatherData implements ISubject {
+    private List<IObserver> observers;
     private float temperature;
     private float humidity;
     private float pressure;
@@ -12,18 +12,18 @@ public class WeatherData implements Subject {
     }
 
     @Override
-    public void registerObserver(Observer o) {
+    public void registerObserver(IObserver o) {
         observers.add(o);
     }
 
     @Override
-    public void removeObserver(Observer o) {
+    public void removeObserver(IObserver o) {
         observers.remove(o);
     }
 
     @Override
     public void notifyObservers() {
-        for (Observer observer : observers) {
+        for (IObserver observer : observers) {
             observer.update(temperature, humidity, pressure);
         }
     }
