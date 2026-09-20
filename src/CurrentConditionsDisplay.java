@@ -1,4 +1,4 @@
-public class CurrentConditionsDisplay implements Observer, DisplayElement {
+public class CurrentConditionsDisplay implements IObserver, IDisplayElement {
     private WeatherData weatherData;
 
     public CurrentConditionsDisplay(WeatherData weatherData) {

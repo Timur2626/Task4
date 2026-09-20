@@ -1,4 +1,4 @@
-public class ForecastDisplay implements Observer, DisplayElement {
+public class ForecastDisplay implements IObserver, IDisplayElement {
     private WeatherData weatherData;
 
     public ForecastDisplay(WeatherData weatherData) {
