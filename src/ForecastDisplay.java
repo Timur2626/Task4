@@ -1,18 +1,10 @@
-public class ForecastDisplay implements Observer, DisplayElement {
-    private WeatherData weatherData;
-
+public class ForecastDisplay implements WeatherListener {
     public ForecastDisplay(WeatherData weatherData) {
-        this.weatherData = weatherData;
-        weatherData.registerObserver(this);
+        weatherData.addWeatherListener(this);
     }
 
     @Override
-    public void update() {
-        display();
-    }
-
-    @Override
-    public void display() {
-        System.out.println("Forecast: pressure " + weatherData.getPressure() + " -> improving");
+    public void weatherChanged(WeatherEvent e) {
+        System.out.println("Forecast: pressure " + e.getPressure() + " -> improving");
     }
 }

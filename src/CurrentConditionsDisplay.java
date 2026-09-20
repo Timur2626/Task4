@@ -1,19 +1,11 @@
-public class CurrentConditionsDisplay implements Observer, DisplayElement {
-    private WeatherData weatherData;
-
+public class CurrentConditionsDisplay implements WeatherListener {
     public CurrentConditionsDisplay(WeatherData weatherData) {
-        this.weatherData = weatherData;
-        weatherData.registerObserver(this);
+        weatherData.addWeatherListener(this);
     }
 
     @Override
-    public void update() {
-        display();
-    }
-
-    @Override
-    public void display() {
-        System.out.println("Current conditions: " + weatherData.getTemperature()
-                + "F degrees and " + weatherData.getHumidity() + "% humidity");
+    public void weatherChanged(WeatherEvent e) {
+        System.out.println("Current conditions: " + e.getTemperature()
+                + "F degrees and " + e.getHumidity() + "% humidity");
     }
 }

@@ -1,18 +1,10 @@
-public class StatisticsDisplay implements Observer, DisplayElement {
-    private WeatherData weatherData;
-
+public class StatisticsDisplay implements WeatherListener {
     public StatisticsDisplay(WeatherData weatherData) {
-        this.weatherData = weatherData;
-        weatherData.registerObserver(this);
+        weatherData.addWeatherListener(this);
     }
 
     @Override
-    public void update() {
-        display();
-    }
-
-    @Override
-    public void display() {
-        System.out.println("Statistics: current temp " + weatherData.getTemperature() + "F");
+    public void weatherChanged(WeatherEvent e) {
+        System.out.println("Statistics: current temp " + e.getTemperature() + "F");
     }
 }
