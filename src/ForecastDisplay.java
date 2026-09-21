@@ -1,18 +1,17 @@
-public class ForecastDisplay implements IObserver, IDisplayElement {
-    private WeatherData weatherData;
+import javax.swing.*;
 
-    public ForecastDisplay(WeatherData weatherData) {
-        this.weatherData = weatherData;
-        weatherData.registerObserver(this);
+public class ForecastDisplay implements IObserver {
+    private final WeatherData weatherData;
+    private final JLabel label;
+
+    public ForecastDisplay(WeatherData data, JLabel label) {
+        this.weatherData = data;
+        this.label = label;
+        data.registerObserver(this);
     }
 
     @Override
     public void update() {
-        display();
-    }
-
-    @Override
-    public void display() {
-        System.out.println("Forecast: pressure " + weatherData.getPressure() + " -> improving");
+        label.setText("Forecast: " + weatherData.getPressure());
     }
 }

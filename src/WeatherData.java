@@ -2,41 +2,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherData implements ISubject {
-    private List<IObserver> observers;
+    private List<IObserver> observers = new ArrayList<>();
     private float temperature;
     private float humidity;
     private float pressure;
 
-    public WeatherData() {
-        observers = new ArrayList<>();
-    }
+    @Override
+    public void registerObserver(IObserver o) { observers.add(o); }
 
     @Override
-    public void registerObserver(IObserver o) {
-        observers.add(o);
-    }
-
-    @Override
-    public void removeObserver(IObserver o) {
-        observers.remove(o);
-    }
+    public void removeObserver(IObserver o) { observers.remove(o); }
 
     @Override
     public void notifyObservers() {
-        for (IObserver observer : observers) {
-            observer.update(); // параметры не передаются
+        for (IObserver o : observers) {
+            o.update(); // без параметров
         }
     }
 
-    public void measurementsChanged() {
+    public void setMeasurements(float t, float h, float p) {
+        this.temperature = t;
+        this.humidity = h;
+        this.pressure = p;
         notifyObservers();
-    }
-
-    public void setMeasurements(float temperature, float humidity, float pressure) {
-        this.temperature = temperature;
-        this.humidity = humidity;
-        this.pressure = pressure;
-        measurementsChanged();
     }
 
     public float getTemperature() { return temperature; }

@@ -1,19 +1,19 @@
-public class CurrentConditionsDisplay implements IObserver, IDisplayElement {
-    private WeatherData weatherData;
+import javax.swing.*;
 
-    public CurrentConditionsDisplay(WeatherData weatherData) {
-        this.weatherData = weatherData;
-        weatherData.registerObserver(this);
+public class CurrentConditionsDisplay implements IObserver {
+    private final WeatherData weatherData;
+    private final JLabel label;
+
+    public CurrentConditionsDisplay(WeatherData data, JLabel label) {
+        this.weatherData = data;
+        this.label = label;
+        data.registerObserver(this);
     }
 
     @Override
     public void update() {
-        display();
-    }
-
-    @Override
-    public void display() {
-        System.out.println("Current conditions: " + weatherData.getTemperature()
-                + "F degrees and " + weatherData.getHumidity() + "% humidity");
+        // Сам берём данные из weatherData
+        label.setText("Current: " + weatherData.getTemperature()
+                + "F, " + weatherData.getHumidity() + "%");
     }
 }

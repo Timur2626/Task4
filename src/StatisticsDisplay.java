@@ -1,18 +1,17 @@
-public class StatisticsDisplay implements IObserver, IDisplayElement {
-    private WeatherData weatherData;
+import javax.swing.*;
 
-    public StatisticsDisplay(WeatherData weatherData) {
-        this.weatherData = weatherData;
-        weatherData.registerObserver(this);
+public class StatisticsDisplay implements IObserver {
+    private final WeatherData weatherData;
+    private final JLabel label;
+
+    public StatisticsDisplay(WeatherData data, JLabel label) {
+        this.weatherData = data;
+        this.label = label;
+        data.registerObserver(this);
     }
 
     @Override
     public void update() {
-        display();
-    }
-
-    @Override
-    public void display() {
-        System.out.println("Statistics: current temp " + weatherData.getTemperature() + "F");
+        label.setText("Stats: " + weatherData.getTemperature() + "F");
     }
 }
