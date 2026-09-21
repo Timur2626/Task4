@@ -16,7 +16,7 @@ public class WeatherData implements ISubject {
     @Override
     public void notifyObservers() {
         for (IObserver o : observers) {
-            o.update(); // без параметров
+            o.update();
         }
     }
 
