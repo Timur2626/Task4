@@ -1,9 +1,9 @@
 import java.util.EventObject;
 
 public class WeatherEvent extends EventObject {
-    private float temperature;
-    private float humidity;
-    private float pressure;
+    private final float temperature;
+    private final float humidity;
+    private final float pressure;
 
     public WeatherEvent(Object source, float temperature, float humidity, float pressure) {
         super(source);

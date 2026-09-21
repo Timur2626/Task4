@@ -1,11 +1,16 @@
+import javax.swing.*;
+
 public class CurrentConditionsDisplay implements WeatherListener {
-    public CurrentConditionsDisplay(WeatherData weatherData) {
-        weatherData.addWeatherListener(this);
+    private final JLabel label;
+
+    public CurrentConditionsDisplay(WeatherData data, JLabel label) {
+        this.label = label;
+        data.addWeatherListener(this);
     }
 
     @Override
-    public void weatherChanged(WeatherEvent e) {
-        System.out.println("Current conditions: " + e.getTemperature()
-                + "F degrees and " + e.getHumidity() + "% humidity");
+    public void weatherChanged(WeatherEvent event) {
+        label.setText("Current: " + event.getTemperature()
+                + "F, " + event.getHumidity() + "%");
     }
 }

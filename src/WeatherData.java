@@ -1,22 +1,22 @@
-import javax.swing.event.EventListenerList;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WeatherData {
-    private EventListenerList listenerList = new EventListenerList();
+    private final List<WeatherListener> listeners = new ArrayList<>();
     private float temperature;
     private float humidity;
     private float pressure;
 
     public void addWeatherListener(WeatherListener listener) {
-        listenerList.add(WeatherListener.class, listener);
+        listeners.add(listener);
     }
 
     public void removeWeatherListener(WeatherListener listener) {
-        listenerList.remove(WeatherListener.class, listener);
+        listeners.remove(listener);
     }
 
-    public void fireWeatherChanged() {
+    private void fireWeatherEvent() {
         WeatherEvent event = new WeatherEvent(this, temperature, humidity, pressure);
-        WeatherListener[] listeners = listenerList.getListeners(WeatherListener.class);
         for (WeatherListener listener : listeners) {
             listener.weatherChanged(event);
         }
@@ -26,6 +26,6 @@ public class WeatherData {
         this.temperature = temperature;
         this.humidity = humidity;
         this.pressure = pressure;
-        fireWeatherChanged();
+        fireWeatherEvent();
     }
 }

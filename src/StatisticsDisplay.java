@@ -1,10 +1,15 @@
+import javax.swing.*;
+
 public class StatisticsDisplay implements WeatherListener {
-    public StatisticsDisplay(WeatherData weatherData) {
-        weatherData.addWeatherListener(this);
+    private final JLabel label;
+
+    public StatisticsDisplay(WeatherData data, JLabel label) {
+        this.label = label;
+        data.addWeatherListener(this);
     }
 
     @Override
-    public void weatherChanged(WeatherEvent e) {
-        System.out.println("Statistics: current temp " + e.getTemperature() + "F");
+    public void weatherChanged(WeatherEvent event) {
+        label.setText("Stats: " + event.getTemperature() + "F");
     }
 }
