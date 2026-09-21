@@ -39,7 +39,6 @@ public class WeatherData implements ISubject {
         measurementsChanged();
     }
 
-    // Геттеры — через них наблюдатели сами берут данные
     public float getTemperature() { return temperature; }
     public float getHumidity() { return humidity; }
     public float getPressure() { return pressure; }
