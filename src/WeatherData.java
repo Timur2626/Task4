@@ -1,26 +1,16 @@
-public class WeatherData {
+import java.util.Observable;
+
+public class WeatherData extends Observable {
     private float temperature;
     private float humidity;
     private float pressure;
 
-    private CurrentConditionsDisplay currentDisplay;
-    private StatisticsDisplay statisticsDisplay;
-    private ForecastDisplay forecastDisplay;
-
     public WeatherData() {
-        currentDisplay = new CurrentConditionsDisplay();
-        statisticsDisplay = new StatisticsDisplay();
-        forecastDisplay = new ForecastDisplay();
     }
 
     public void measurementsChanged() {
-        float temp = getTemperature();
-        float humidity = getHumidity();
-        float pressure = getPressure();
-
-        currentDisplay.update(temp, humidity, pressure);
-        statisticsDisplay.update(temp, humidity, pressure);
-        forecastDisplay.update(temp, humidity, pressure);
+        setChanged();
+        notifyObservers();
     }
 
     public void setMeasurements(float temperature, float humidity, float pressure) {
